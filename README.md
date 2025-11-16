@@ -11,6 +11,15 @@ A web-based Jeopardy! trivia game that uses real historical game data from J! Ar
 - 🔄 **Multiple Rounds**: Play both Jeopardy! and Double Jeopardy! rounds
 - 📱 **Responsive Design**: Works on desktop and mobile devices
 
+## Prerequisites
+
+**⚠️ IMPORTANT: Node.js must be installed before proceeding with any installation steps.**
+
+- **Node.js** (v16 or higher) - [Download Node.js](https://nodejs.org/)
+- **Python** (v3.7 or higher) - For running the scraping script
+- **npm** (comes with Node.js)
+
+
 ## Installation
 
 1. Clone the repository:
