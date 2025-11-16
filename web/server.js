@@ -1,7 +1,7 @@
 import express from 'express'
 import sqlite3 from 'sqlite3'
 import { fileURLToPath } from 'url'
-import { dirname, join } from 'path'
+import path from 'path'
 import { exec } from 'child_process'
 import { promisify } from 'util'
 import cors from 'cors'
@@ -9,7 +9,7 @@ import cors from 'cors'
 const execAsync = promisify(exec)
 
 const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
+const __dirname = path.dirname(__filename)
 
 const app = express()
 const PORT = 3001
@@ -18,16 +18,19 @@ const PORT = 3001
 app.use(cors())
 app.use(express.json())
 
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, "dist")))
+
 // Path to the database
-const dbPath = join(__dirname, '..', 'jarchive.sqlite3')
-const scrapeScriptPath = join(__dirname, '..', 'scrape_jarchive.py')
+const dbPath = path.join(__dirname, '..', 'jarchive.sqlite3')
+const scrapeScriptPath = path.join(__dirname, '..', 'scrape_jarchive.py')
 
 // Helper function to scrape a new game
 async function scrapeNewGame() {
   try {
     console.log('Scraping new game...')
     // Run from the parent directory where schema.sql and the script are located
-    const scriptDir = join(__dirname, '..')
+    const scriptDir = path.join(__dirname, '..')
     const { stdout, stderr } = await execAsync(`python3 scrape_jarchive.py`, {
       cwd: scriptDir
     })
@@ -285,6 +288,11 @@ app.delete('/api/game/:showId', (req, res) => {
     console.log(`Game ${showId} deleted from database`)
     res.json({ success: true, message: `Game ${showId} deleted` })
   })
+})
+
+// Catch-all handler: send back React's index.html file for any non-API routes
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist", "index.html"))
 })
 
 app.listen(PORT, () => {
