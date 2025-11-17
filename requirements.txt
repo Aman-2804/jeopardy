@@ -1,6 +1,2 @@
 requests
 beautifulsoup4
-pygame
-PySide6
-node
-npm

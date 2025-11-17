@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: jeopardy-trivia-game
+    env: node
+    plan: free
+    buildCommand: python3 -m pip install -r requirements.txt && cd web && npm install && npm run build
+    startCommand: cd web && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+    healthCheckPath: /
+
