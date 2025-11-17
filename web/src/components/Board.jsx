@@ -38,7 +38,7 @@ export default function Board({ data, round, score, setScore }) {
   }, [])
 
   return (
-    <div className="max-w-7xl mx-auto w-full">
+    <div className="max-w-7xl mx-auto w-full overflow-hidden">
       {/* Scroll hint for mobile users */}
       {isMobile && showScrollHint && (
         <div className="mb-3 mx-2 sm:mx-0">
@@ -56,8 +56,8 @@ export default function Board({ data, round, score, setScore }) {
       )}
       
       {/* Single scroll container for both categories and tiles - Horizontal scroll on mobile */}
-      <div className="overflow-x-auto -mx-2 sm:mx-0">
-        <div className="min-w-max sm:min-w-0 px-2 sm:px-0">
+      <div className="overflow-x-auto px-2 sm:px-0 w-full">
+        <div className="min-w-max sm:min-w-0">
           {/* Category Headers */}
           <div className="grid grid-cols-6 gap-1 sm:gap-2 mb-1 sm:mb-2">
             {categories.map((cat, i) => (
