@@ -4,7 +4,8 @@ import Score from './components/Score'
 import AudioPlayer from './components/AudioPlayer'
 import FinalJeopardy from './components/FinalJeopardy'
 
-const API_URL = 'http://localhost:3001'
+// Use relative URLs in production, localhost in development
+const API_URL = import.meta.env.DEV ? 'http://localhost:3001' : ''
 
 export default function App() {
   const [data, setData] = useState(null)
