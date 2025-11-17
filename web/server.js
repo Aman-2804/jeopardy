@@ -18,9 +18,6 @@ const PORT = process.env.PORT || 3001
 app.use(cors())
 app.use(express.json())
 
-// Serve static files from the React app
-app.use(express.static(path.join(__dirname, "dist")))
-
 // Path to the database
 const dbPath = path.join(__dirname, '..', 'jarchive.sqlite3')
 const scrapeScriptPath = path.join(__dirname, '..', 'scrape_jarchive.py')
@@ -49,36 +46,59 @@ async function scrapeNewGame() {
 // Helper function to delete all games from database
 function deleteAllGames(db) {
   return new Promise((resolve, reject) => {
-    db.run('DELETE FROM shows', function(err) {
-      if (err) reject(err)
-      else {
-        console.log(`Deleted all games from database`)
-        resolve()
+    // Check if tables exist first
+    db.get("SELECT name FROM sqlite_master WHERE type='table' AND name='shows'", (err, row) => {
+      if (err) {
+        console.log('Database might not exist yet, skipping delete')
+        resolve() // If database doesn't exist, that's fine
+        return
       }
+      if (!row) {
+        console.log('Shows table does not exist yet, skipping delete')
+        resolve()
+        return
+      }
+      db.run('DELETE FROM shows', function(err) {
+        if (err) {
+          // If table doesn't exist or other error, just log and continue
+          console.log('Could not delete games (table might not exist):', err.message)
+          resolve() // Don't reject, just continue
+        } else {
+          console.log(`Deleted all games from database`)
+          resolve()
+        }
+      })
     })
   })
 }
 
 // Get a random complete game (always scrapes a new game on app load)
 app.get('/api/random-game', async (req, res) => {
-  const db = new sqlite3.Database(dbPath)
-  
+  let db = null
   try {
-    // Always delete all existing games first
+    // Try to open database (will create if doesn't exist)
+    db = new sqlite3.Database(dbPath)
+    
+    // Always delete all existing games first (if database exists)
     await deleteAllGames(db)
     db.close()
+    db = null
     
     // Scrape a new random game
     console.log('Scraping new random game...')
     await scrapeNewGame()
     
     // Reopen database after scraping and get the new game
-    const newDb = new sqlite3.Database(dbPath)
-    return getRandomGame(newDb, res)
+    db = new sqlite3.Database(dbPath)
+    return getRandomGame(db, res)
   } catch (error) {
     console.error('Error in random-game endpoint:', error)
-    db.close()
-    return res.status(500).json({ error: 'Failed to load or scrape game' })
+    console.error('Error stack:', error.stack)
+    if (db) db.close()
+    return res.status(500).json({ 
+      error: 'Failed to load or scrape game',
+      details: process.env.NODE_ENV === 'development' ? error.message : undefined
+    })
   }
 })
 
@@ -289,6 +309,9 @@ app.delete('/api/game/:showId', (req, res) => {
     res.json({ success: true, message: `Game ${showId} deleted` })
   })
 })
+
+// Serve static files from the React app (after API routes)
+app.use(express.static(path.join(__dirname, "dist")))
 
 // Catch-all handler: send back React's index.html file for any non-API routes
 app.get("*", (req, res) => {
