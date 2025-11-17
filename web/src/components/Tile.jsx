@@ -176,7 +176,7 @@ export default function Tile({ value, clue, score, setScore }) {
           className="absolute inset-0 bg-black opacity-0 group-hover:opacity-40 group-active:opacity-40 transition-opacity duration-150"
           style={{ pointerEvents: 'none' }}
         />
-        <span className="money-value relative z-10 text-lg sm:text-2xl md:text-2.25rem">${value}</span>
+        <span className="money-value relative z-10 text-2xl sm:text-4xl lg:text-5xl">${value}</span>
       </motion.div>
 
       <AnimatePresence>

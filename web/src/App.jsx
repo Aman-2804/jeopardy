@@ -129,7 +129,7 @@ export default function App() {
         </div>
       </header>
 
-      <main className="flex-1 p-2 sm:p-4 md:p-6 bg-black overflow-x-auto">
+      <main className="flex-1 p-2 sm:p-4 md:p-6 bg-black">
         {showFinal && finalData ? (
           <FinalJeopardy 
             finalData={finalData} 
