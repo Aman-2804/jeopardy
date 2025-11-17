@@ -91,43 +91,45 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <header className="flex items-center justify-between p-4 bg-black border-b border-gray-800">
-        <div>
-          <h1 className="text-3xl font-bold" style={{ color: 'var(--money-gold)' }}>
-            JEOPARDY!
-          </h1>
-          {showNumber && (
-            <p className="text-white text-sm mt-1">
-              Game #{showNumber} from {approxYear}
-            </p>
-          )}
-        </div>
-        <div className="flex items-center gap-4">
-          <Score score={score} />
-          <AudioPlayer />
-          <button
-            className="px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-700"
-            onClick={() => {
-              if (round === 'jeopardy') {
-                loadDoubleJeopardy()
-              } else if (round === 'double') {
-                loadFinalJeopardy()
-              }
-            }}
-            disabled={showFinal}
-          >
-            {round === 'jeopardy' ? 'Next Round' : round === 'double' ? 'Final Jeopardy' : 'Next Round'}
-          </button>
-          <button
-            className="px-4 py-2 bg-yellow-500 text-black rounded hover:bg-yellow-400 font-bold"
-            onClick={loadRandomGame}
-          >
-            New Game
-          </button>
+      <header className="bg-black border-b border-gray-800">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 sm:p-4 gap-3 sm:gap-4">
+          <div>
+            <h1 className="text-2xl sm:text-3xl font-bold" style={{ color: 'var(--money-gold)' }}>
+              JEOPARDY!
+            </h1>
+            {showNumber && (
+              <p className="text-white text-xs sm:text-sm mt-1">
+                Game #{showNumber} from {approxYear}
+              </p>
+            )}
+          </div>
+          <div className="flex flex-wrap items-center gap-2 sm:gap-4">
+            <Score score={score} />
+            <AudioPlayer />
+            <button
+              className="px-3 py-2 sm:px-4 sm:py-2 bg-gray-800 text-white rounded hover:bg-gray-700 text-sm sm:text-base min-h-[44px]"
+              onClick={() => {
+                if (round === 'jeopardy') {
+                  loadDoubleJeopardy()
+                } else if (round === 'double') {
+                  loadFinalJeopardy()
+                }
+              }}
+              disabled={showFinal}
+            >
+              {round === 'jeopardy' ? 'Next Round' : round === 'double' ? 'Final Jeopardy' : 'Next Round'}
+            </button>
+            <button
+              className="px-3 py-2 sm:px-4 sm:py-2 bg-yellow-500 text-black rounded hover:bg-yellow-400 font-bold text-sm sm:text-base min-h-[44px]"
+              onClick={loadRandomGame}
+            >
+              New Game
+            </button>
+          </div>
         </div>
       </header>
 
-      <main className="flex-1 p-6 bg-black">
+      <main className="flex-1 p-2 sm:p-4 md:p-6 bg-black overflow-x-auto">
         {showFinal && finalData ? (
           <FinalJeopardy 
             finalData={finalData} 
