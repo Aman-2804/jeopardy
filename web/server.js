@@ -104,30 +104,15 @@ app.get('/api/random-game', async (req, res) => {
 
 // Helper function to get and return a random game
 function getRandomGame(db, res) {
-  // Get a random game that has complete data for both rounds
+  // First, try to get the most recently added game (the one we just scraped)
+  // This ensures we return the game we just added even if it's not "complete"
   db.get(`
     SELECT s.id, s.show_number
     FROM shows s
-    WHERE s.id IN (
-        -- Games with complete jeopardy round (6 categories, 30 clues)
-        SELECT r1.show_id
-        FROM rounds r1
-        JOIN categories c1 ON r1.id = c1.round_id
-        JOIN clues cl1 ON c1.id = cl1.category_id
-        WHERE r1.name = 'jeopardy'
-        GROUP BY r1.show_id
-        HAVING COUNT(cl1.id) >= 30 AND COUNT(DISTINCT c1.id) = 6
-    ) AND s.id IN (
-        -- Games with complete double jeopardy round (6 categories, 30 clues)
-        SELECT r2.show_id
-        FROM rounds r2
-        JOIN categories c2 ON r2.id = c2.round_id
-        JOIN clues cl2 ON c2.id = cl2.category_id
-        WHERE r2.name = 'double'
-        GROUP BY r2.show_id
-        HAVING COUNT(cl2.id) >= 30 AND COUNT(DISTINCT c2.id) = 6
+    WHERE EXISTS (
+      SELECT 1 FROM rounds r WHERE r.show_id = s.id AND r.name = 'jeopardy'
     )
-    ORDER BY RANDOM() 
+    ORDER BY s.id DESC
     LIMIT 1
   `, (err, game) => {
     if (err) {
@@ -136,17 +121,37 @@ function getRandomGame(db, res) {
       return res.status(500).json({ error: 'Database error' })
     }
     
+    // If no game found, try a less strict query for any game with jeopardy round
     if (!game) {
-      db.close()
-      return res.status(404).json({ error: 'No complete games found' })
+      db.get(`
+        SELECT s.id, s.show_number
+        FROM shows s
+        WHERE EXISTS (
+          SELECT 1 FROM rounds r WHERE r.show_id = s.id AND r.name = 'jeopardy'
+        )
+        ORDER BY RANDOM()
+        LIMIT 1
+      `, (err, game2) => {
+        if (err || !game2) {
+          console.error('No games found in database')
+          db.close()
+          return res.status(404).json({ error: 'No games found in database' })
+        }
+        return processGame(db, res, game2.id, game2.show_number)
+      })
+      return
     }
     
-    const showId = game.id
-    const showNumber = game.show_number
-    const approxYear = 1984 + Math.floor((showNumber - 1) / 230)
-    
-    // Get categories and clues for jeopardy round
-    db.all(`
+    return processGame(db, res, game.id, game.show_number)
+  })
+}
+
+// Helper function to process and return game data
+function processGame(db, res, showId, showNumber) {
+  const approxYear = showNumber ? (1984 + Math.floor((showNumber - 1) / 230)) : null
+  
+  // Get categories and clues for jeopardy round
+  db.all(`
       SELECT c.position, c.name, c.id
       FROM categories c
       JOIN rounds r ON c.round_id = r.id
@@ -200,7 +205,6 @@ function getRandomGame(db, res) {
           res.status(500).json({ error: 'Failed to load clues' })
         })
     })
-  })
 }
 
 // Get double jeopardy round
