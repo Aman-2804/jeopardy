@@ -134,9 +134,9 @@ export default function Tile({ value, clue, score, setScore }) {
     setShowResult(true)
     
     if (correct) {
-      setScore(score + finalValue)
+      setScore(prevScore => prevScore + finalValue)
     } else {
-      setScore(score - finalValue)
+      setScore(prevScore => Math.max(0, prevScore - finalValue))
     }
   }
 
