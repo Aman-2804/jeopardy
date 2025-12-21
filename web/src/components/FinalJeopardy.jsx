@@ -109,7 +109,7 @@ export default function FinalJeopardy({ finalData, score, setScore, onComplete }
     setShowResult(true)
     
     setScore(prevScore => {
-      const newScore = correct ? prevScore + wagerAmount : Math.max(0, prevScore - wagerAmount)
+      const newScore = correct ? prevScore + wagerAmount : prevScore - wagerAmount
       setFinalScore(newScore)
       return newScore
     })

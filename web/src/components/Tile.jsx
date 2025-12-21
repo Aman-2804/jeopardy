@@ -138,7 +138,7 @@ export default function Tile({ value, clue, score, setScore }) {
     if (correct) {
       setScore(prevScore => prevScore + finalValue)
     } else {
-      setScore(prevScore => Math.max(0, prevScore - finalValue))
+      setScore(prevScore => prevScore - finalValue)
     }
   }
 
