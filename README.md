@@ -1,6 +1,8 @@
 # Play Any Real Jeopardy Episode (2000–Present)
 
-### Live demo: https://jeopardy-by-aman.onrender.com
+[![Live Demo](https://img.shields.io/badge/Live-Demo-blue)](https://jeopardy-by-aman.onrender.com)
+[![License](https://img.shields.io/badge/License-Educational-lightgrey)](#license)
+
 
 A web-based Jeopardy! trivia game that uses real historical game data from J! Archive. Play classic Jeopardy! rounds with authentic questions and answers.
 
