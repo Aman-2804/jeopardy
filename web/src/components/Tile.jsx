@@ -110,9 +110,6 @@ export default function Tile({ value, clue, score, setScore }) {
     // Exact match
     if (userNorm === correctNorm) return true
     
-    // Check if one contains the other
-    if (userNorm.includes(correctNorm) || correctNorm.includes(userNorm)) return true
-    
     // Handle pluralization - remove trailing 's' and compare
     const userSingular = userNorm.replace(/s$/, '')
     const correctSingular = correctNorm.replace(/s$/, '')
@@ -123,6 +120,11 @@ export default function Tile({ value, clue, score, setScore }) {
     // Check if singular forms match when one has 's' and other doesn't
     if (userNorm.endsWith('s') && userNorm.slice(0, -1) === correctNorm) return true
     if (correctNorm.endsWith('s') && correctNorm.slice(0, -1) === userNorm) return true
+    
+    // For multi-word answers, check if they match word-by-word (handles word order differences)
+    const userWords = userNorm.split(/\s+/).sort().join(' ')
+    const correctWords = correctNorm.split(/\s+/).sort().join(' ')
+    if (userWords === correctWords && userWords.length > 0) return true
     
     return false
   }

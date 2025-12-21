@@ -71,17 +71,24 @@ export default function FinalJeopardy({ finalData, score, setScore, onComplete }
     // If normalized user answer is empty, it's incorrect
     if (!userNorm || userNorm.length === 0) return false
     
+    // Exact match
     if (userNorm === correctNorm) return true
-    if (userNorm.includes(correctNorm) || correctNorm.includes(userNorm)) return true
     
+    // Handle pluralization - remove trailing 's' and compare
     const userSingular = userNorm.replace(/s$/, '')
     const correctSingular = correctNorm.replace(/s$/, '')
     
     if (userSingular === correctNorm || userNorm === correctSingular) return true
     if (userSingular === correctSingular && userSingular.length > 0) return true
     
+    // Check if singular forms match when one has 's' and other doesn't
     if (userNorm.endsWith('s') && userNorm.slice(0, -1) === correctNorm) return true
     if (correctNorm.endsWith('s') && correctNorm.slice(0, -1) === userNorm) return true
+    
+    // For multi-word answers, check if they match word-by-word (handles word order differences)
+    const userWords = userNorm.split(/\s+/).sort().join(' ')
+    const correctWords = correctNorm.split(/\s+/).sort().join(' ')
+    if (userWords === correctWords && userWords.length > 0) return true
     
     return false
   }
