@@ -1,4 +1,4 @@
-# Jeopardy Trivia Game
+# Play Any Jeopardy Show (2000 - Present)
 
 A web-based Jeopardy! trivia game that uses real historical game data from J! Archive. Play classic Jeopardy! rounds with authentic questions and answers.
 
