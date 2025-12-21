@@ -3,14 +3,15 @@
 A web-based Jeopardy! trivia game that uses real historical game data from J! Archive. Play classic Jeopardy! rounds with authentic questions and answers.
 
 
-<img src="https://github.com/user-attachments/assets/3d67acce-93ee-4f25-abf0-d5a0b3e51e2d" width="100%"> | <img src="https://github.com/user-attachments/assets/0e7b7929-592c-45a4-9c56-cadb95235dc2" width="100%"> |
-| <img src="https://github.com/user-attachments/assets/79eca603-d3ff-4f43-b00b-876930248e18" width="100%"> | <img src="https://github.com/user-attachments/assets/cca683c3-9f09-4bc2-aa45-9254e81687f9" width="100%"> |
-/>
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/3d67acce-93ee-4f25-abf0-d5a0b3e51e2d" width="49%" />
+  <img src="https://github.com/user-attachments/assets/0e7b7929-592c-45a4-9c56-cadb95235dc2" width="49%" />
+</div>
 
-
-
-
-
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/79eca603-d3ff-4f43-b00b-876930248e18" width="49%" />
+  <img src="https://github.com/user-attachments/assets/cca683c3-9f09-4bc2-aa45-9254e81687f9" width="49%" />
+</div>
 
 
 ## Features
