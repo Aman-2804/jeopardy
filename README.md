@@ -2,6 +2,10 @@
 
 A web-based Jeopardy! trivia game that uses real historical game data from J! Archive. Play classic Jeopardy! rounds with authentic questions and answers.
 
+<img width="1440" height="900" alt="Screenshot 2025-12-21 at 12 25 08 PM" src="https://github.com/user-attachments/assets/836a86f3-d2de-42b7-a5d6-50d7fb9ceb31" />
+
+
+
 ## Features
 
 - 🎮 **Authentic Jeopardy Experience**: Play with real questions from historical Jeopardy! games
