@@ -2,10 +2,10 @@
 
 A web-based Jeopardy! trivia game that uses real historical game data from J! Archive. Play classic Jeopardy! rounds with authentic questions and answers.
 
-<img width="650" height="900" alt="Screenshot 2025-12-21 at 12 34 19 PM" src="https://github.com/user-attachments/assets/3d67acce-93ee-4f25-abf0-d5a0b3e51e2d" />
-<img width="650" height="900" alt="Screenshot 2025-12-21 at 12 35 39 PM" src="https://github.com/user-attachments/assets/0e7b7929-592c-45a4-9c56-cadb95235dc2" />
-<img width="650" height="900" alt="Screenshot 2025-12-21 at 12 36 07 PM" src="https://github.com/user-attachments/assets/79eca603-d3ff-4f43-b00b-876930248e18" />
-<img width="650" height="900" alt="Screenshot 2025-12-21 at 12 36 54 PM" src="https://github.com/user-attachments/assets/cca683c3-9f09-4bc2-aa45-9254e81687f9" />
+
+<img src="https://github.com/user-attachments/assets/3d67acce-93ee-4f25-abf0-d5a0b3e51e2d" width="100%"> | <img src="https://github.com/user-attachments/assets/0e7b7929-592c-45a4-9c56-cadb95235dc2" width="100%"> |
+| <img src="https://github.com/user-attachments/assets/79eca603-d3ff-4f43-b00b-876930248e18" width="100%"> | <img src="https://github.com/user-attachments/assets/cca683c3-9f09-4bc2-aa45-9254e81687f9" width="100%"> |
+/>
 
 
 
