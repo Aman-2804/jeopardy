@@ -7,7 +7,3 @@ cache_html/
 # macOS metadata
 .DS_Store
 web/node_modules/
-
-# README files
-README.md
-web/README.md
