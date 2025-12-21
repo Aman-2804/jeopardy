@@ -1,11 +1,11 @@
-<img width="1439" height="898" alt="Screenshot 2025-12-19 at 7 29 32 AM" src="https://github.com/user-attachments/assets/4bdb3603-fec5-439b-ba78-ee5028ec470a" /><img width="1439" height="898" alt="Screenshot 2025-12-19 at 7 29 32 AM" src="https://github.com/user-attachments/assets/3dcb3392-7ec8-4d3e-bd09-827302d12958" /># Jeopardy Trivia Game
+# Jeopardy Trivia Game
 
 A web-based Jeopardy! trivia game that uses real historical game data from J! Archive. Play classic Jeopardy! rounds with authentic questions and answers.
 
-<img width="1440" height="900" alt="Screenshot 2025-12-21 at 12 34 19 PM" src="https://github.com/user-attachments/assets/3d67acce-93ee-4f25-abf0-d5a0b3e51e2d" />
-<img width="1440" height="900" alt="Screenshot 2025-12-21 at 12 35 39 PM" src="https://github.com/user-attachments/assets/0e7b7929-592c-45a4-9c56-cadb95235dc2" />
-<img width="1440" height="900" alt="Screenshot 2025-12-21 at 12 36 07 PM" src="https://github.com/user-attachments/assets/79eca603-d3ff-4f43-b00b-876930248e18" />
-<img width="1440" height="900" alt="Screenshot 2025-12-21 at 12 36 54 PM" src="https://github.com/user-attachments/assets/cca683c3-9f09-4bc2-aa45-9254e81687f9" />
+<img width="650" height="900" alt="Screenshot 2025-12-21 at 12 34 19 PM" src="https://github.com/user-attachments/assets/3d67acce-93ee-4f25-abf0-d5a0b3e51e2d" />
+<img width="650" height="900" alt="Screenshot 2025-12-21 at 12 35 39 PM" src="https://github.com/user-attachments/assets/0e7b7929-592c-45a4-9c56-cadb95235dc2" />
+<img width="650" height="900" alt="Screenshot 2025-12-21 at 12 36 07 PM" src="https://github.com/user-attachments/assets/79eca603-d3ff-4f43-b00b-876930248e18" />
+<img width="650" height="900" alt="Screenshot 2025-12-21 at 12 36 54 PM" src="https://github.com/user-attachments/assets/cca683c3-9f09-4bc2-aa45-9254e81687f9" />
 
 
 
