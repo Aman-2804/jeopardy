@@ -57,7 +57,10 @@ export default function FinalJeopardy({ finalData, score, setScore, onComplete }
     for (const prefix of questionPrefixes) {
       normalized = normalized.replace(prefix, '').trim()
     }
-    
+
+    // Remove leading articles (a, an, the)
+    normalized = normalized.replace(/^(the|a|an)\s+/i, '').trim()
+
     return normalized.trim()
   }
 
